@@ -268,7 +268,12 @@ english:Preposition
   skos:prefLabel 'Preposition'@en ;
   rdfs:isDefinedBy english: .
 
-
+english:Adjective
+  a owl:Class ;
+  rdfs:subClassOf english:TerminalNode ;
+  skos:definition 'Represents an adjective in English, such as "big", "blue", "happy".'@en ;
+  skos:prefLabel 'Adjective'@en ;
+  rdfs:isDefinedBy english: .
 
 ### Shapes ###
 

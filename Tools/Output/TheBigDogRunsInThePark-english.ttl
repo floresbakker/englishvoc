@@ -88,52 +88,52 @@ shp:SyntaxSymbol a sh:NodeShape ;
     sh:rule rule:SyntaxSymbol ;
     sh:target target:SyntaxSymbol .
 
-example:Determiner_1 a english:Determiner ;
-    english:fragment "The" .
-
-example:Determiner_2 a english:Determiner ;
-    english:fragment "the" .
-
 example:ExampleSentence a english:Sentence ;
-    rdf:_1 example:NounPhrase_1 ;
-    rdf:_2 example:VerbPhrase_1 ;
+    rdf:_1 example:the_big_dog ;
+    rdf:_2 example:runs_in_the_park ;
     english:fragment "The big dog runs in the park"^^xsd:string .
 
-example:NounPhrase_1 a english:NounPhrase ;
-    rdf:_1 example:Determiner_1 ;
-    rdf:_2 example:TerminalNode_1 ;
-    rdf:_3 example:Noun_1 ;
-    english:fragment "The big dog"^^xsd:string .
+example:The a english:Determiner ;
+    english:fragment "The" .
 
-example:NounPhrase_2 a english:NounPhrase ;
-    rdf:_1 example:Determiner_2 ;
-    rdf:_2 example:Noun_2 ;
-    english:fragment "the park"^^xsd:string .
-
-example:Noun_1 a english:Noun ;
-    english:fragment "dog" .
-
-example:Noun_2 a english:Noun ;
-    english:fragment "park" .
-
-example:Preposition_1 a english:Preposition ;
-    english:fragment "in" .
-
-example:PrepositionalPhrase_1 a english:PrepositionalPhrase ;
-    rdf:_1 example:Preposition_1 ;
-    rdf:_2 example:NounPhrase_2 ;
-    english:fragment "in the park"^^xsd:string .
-
-example:TerminalNode_1 a english:TerminalNode ;
+example:big a english:Adjective ;
     english:fragment "big" .
 
-example:VerbPhrase_1 a english:VerbPhrase ;
-    rdf:_1 example:Verb_1 ;
-    rdf:_2 example:PrepositionalPhrase_1 ;
+example:dog a english:Noun ;
+    english:fragment "dog" .
+
+example:in a english:Preposition ;
+    english:fragment "in" .
+
+example:in_the_park a english:PrepositionalPhrase ;
+    rdf:_1 example:in ;
+    rdf:_2 example:the_park ;
+    english:fragment "in the park"^^xsd:string .
+
+example:park a english:Noun ;
+    english:fragment "park" .
+
+example:runs a english:Verb ;
+    english:fragment "runs" .
+
+example:runs_in_the_park a english:VerbPhrase ;
+    rdf:_1 example:runs ;
+    rdf:_2 example:in_the_park ;
     english:fragment "runs in the park"^^xsd:string .
 
-example:Verb_1 a english:Verb ;
-    english:fragment "runs" .
+example:the a english:Determiner ;
+    english:fragment "the" .
+
+example:the_big_dog a english:NounPhrase ;
+    rdf:_1 example:The ;
+    rdf:_2 example:big ;
+    rdf:_3 example:dog ;
+    english:fragment "The big dog"^^xsd:string .
+
+example:the_park a english:NounPhrase ;
+    rdf:_1 example:the ;
+    rdf:_2 example:park ;
+    english:fragment "the park"^^xsd:string .
 
 decl:english sh:namespace "https://www.english.org/model/def/"^^xsd:anyURI ;
     sh:prefix "english" .
@@ -146,6 +146,12 @@ decl:rdfs sh:namespace "http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI ;
 
 decl:xsd sh:namespace "http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI ;
     sh:prefix "xsd" .
+
+english:Adjective a owl:Class ;
+    rdfs:isDefinedBy english: ;
+    rdfs:subClassOf english:TerminalNode ;
+    skos:definition "Represents an adjective in English, such as \"big\", \"blue\", \"happy\"."@en ;
+    skos:prefLabel "Adjective"@en .
 
 english:Document a owl:Class ;
     dct:conformsTo <http://example.org/section/Document> ;

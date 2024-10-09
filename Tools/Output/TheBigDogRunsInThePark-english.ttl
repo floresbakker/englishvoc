@@ -89,12 +89,18 @@ shp:SyntaxSymbol a sh:NodeShape ;
     sh:target target:SyntaxSymbol .
 
 example:ExampleSentence a english:Sentence ;
-    rdf:_1 example:the_big_dog ;
+    rdf:_1 example:The_big_dog ;
     rdf:_2 example:runs_in_the_park ;
     english:fragment "The big dog runs in the park"^^xsd:string .
 
 example:The a english:Determiner ;
     english:fragment "The" .
+
+example:The_big_dog a english:NounPhrase ;
+    rdf:_1 example:The ;
+    rdf:_2 example:big ;
+    rdf:_3 example:dog ;
+    english:fragment "The big dog"^^xsd:string .
 
 example:big a english:Adjective ;
     english:fragment "big" .
@@ -123,12 +129,6 @@ example:runs_in_the_park a english:VerbPhrase ;
 
 example:the a english:Determiner ;
     english:fragment "the" .
-
-example:the_big_dog a english:NounPhrase ;
-    rdf:_1 example:The ;
-    rdf:_2 example:big ;
-    rdf:_3 example:dog ;
-    english:fragment "The big dog"^^xsd:string .
 
 example:the_park a english:NounPhrase ;
     rdf:_1 example:the ;

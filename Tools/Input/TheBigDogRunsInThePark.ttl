@@ -1,46 +1,3 @@
-# englishvoc
-
-A RDF-based vocabulary to model English into RDF. English documents can thus be represented, queried, generated, validated, analysed, transformed and reused as semantic objects themselves.
-
-# Abstract
-
-
-
-# Description
-
-
-
-# Introduction
-
-
-
-# Background
-
-
-
-# Objective
-
-
-
-# Audience
-
-
-
-# Status
-
-Unstable & unfinished. Work in progress.
-
-# Example - "The big dog runs in the park"
-
-Take for example the following sentence:
-
-```
-The big dog runs in the park
-```
-
-This can be modeled in RDF using the English Vocabulary:
-
-```
 prefix example: <https://example.org/english/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix english: <https://www.english.org/model/def/>
@@ -102,6 +59,3 @@ example:Determiner_2
 example:Noun_2
   a english:Noun ;
   english:fragment "park" .
-
-``` 
- 

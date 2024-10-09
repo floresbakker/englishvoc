@@ -1,0 +1,505 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix decl: <https://www.english.org/model/decl/> .
+@prefix english: <https://www.english.org/model/def/> .
+@prefix example: <https://example.org/english/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix respec: <https://respec.org/model/> .
+@prefix rule: <https://www.english.org/model/rule/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix shp: <https://www.english.org/model/shp/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix standard: <https://www.english.org/model/> .
+@prefix status: <http://purl.org/adms/status/> .
+@prefix target: <https://www.english.org/model/target/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+english:NounPhrase a rdfs:Class ;
+    dct:conformsTo <http://example.org/section/NounPhrase> ;
+    rdfs:subClassOf english:Phrase ;
+    skos:definition "Represents a noun phrase in English."@en ;
+    skos:prefLabel "Noun phrase"@en .
+
+english:Phrase a rdfs:Class ;
+    dct:conformsTo <http://example.org/section/Phrase> ;
+    rdfs:subClassOf english:NonTerminalNode ;
+    skos:definition "Represents a phrase in English."@en ;
+    skos:prefLabel "Phrase"@en .
+
+english:PrepositionalPhrase a rdfs:Class ;
+    dct:conformsTo <http://example.org/section/PrepositionalPhrase> ;
+    rdfs:subClassOf english:Phrase ;
+    skos:definition "Represents a prepositional phrase in English."@en ;
+    skos:prefLabel "Prepositional phrase"@en .
+
+english:VerbPhrase a rdfs:Class ;
+    dct:conformsTo <http://example.org/section/VerbPhrase> ;
+    rdfs:subClassOf english:Phrase ;
+    skos:definition "Represents a verb phrase in English."@en ;
+    skos:prefLabel "Verb phrase"@en .
+
+example:Document a english:Document ;
+    rdf:_1 example:ExampleSentence ;
+    english:fragment "The big dog runs in the park"^^xsd:string .
+
+english:AbstractSyntaxTree a owl:Class ;
+    dct:conformsTo <http://example.org/section/EnglishAbstractSyntaxTree> ;
+    rdfs:isDefinedBy english: ;
+    skos:definition "Represents a tree that models an English sentence. It consists of a hierarchy of connected nodes that model the structure and syntax of an English sentence."@en ;
+    skos:prefLabel "English Abstract Syntax Tree"@en .
+
+standard:english a dct:Standard ;
+    dct:created "2024-04-07"^^xsd:date ;
+    dct:source "https://www.english.org/"^^xsd:anyURI ;
+    rdfs:isDefinedBy english: ;
+    skos:prefLabel "English"@en .
+
+shp:ExpressionConstant a sh:NodeShape ;
+    rdfs:isDefinedBy english: ;
+    skos:prefLabel "ExpressionConstant shape"@en ;
+    sh:rule rule:ExpressionConstant ;
+    sh:target target:ExpressionConstant .
+
+shp:ExpressionPhrase a sh:NodeShape ;
+    rdfs:isDefinedBy english: ;
+    skos:prefLabel "ExpressionPhrase shape"@en ;
+    sh:rule rule:ExpressionPhrase ;
+    sh:target target:ExpressionPhrase .
+
+shp:NonTerminalNode a sh:NodeShape ;
+    rdfs:isDefinedBy english: ;
+    skos:prefLabel "Non-terminal node shape"@en ;
+    sh:rule rule:NonTerminalNode ;
+    sh:target target:NonTerminalNode .
+
+shp:SyntaxKeyword a sh:NodeShape ;
+    rdfs:isDefinedBy english: ;
+    skos:prefLabel "Syntax Keyword shape"@en ;
+    sh:rule rule:SyntaxKeyword ;
+    sh:target target:SyntaxKeyword .
+
+shp:SyntaxSymbol a sh:NodeShape ;
+    rdfs:isDefinedBy english: ;
+    skos:prefLabel "Syntax Symbol shape"@en ;
+    sh:rule rule:SyntaxSymbol ;
+    sh:target target:SyntaxSymbol .
+
+example:Determiner_1 a english:Determiner ;
+    english:fragment "The" .
+
+example:Determiner_2 a english:Determiner ;
+    english:fragment "the" .
+
+example:ExampleSentence a english:Sentence ;
+    rdf:_1 example:NounPhrase_1 ;
+    rdf:_2 example:VerbPhrase_1 ;
+    english:fragment "The big dog runs in the park"^^xsd:string .
+
+example:NounPhrase_1 a english:NounPhrase ;
+    rdf:_1 example:Determiner_1 ;
+    rdf:_2 example:TerminalNode_1 ;
+    rdf:_3 example:Noun_1 ;
+    english:fragment "The big dog"^^xsd:string .
+
+example:NounPhrase_2 a english:NounPhrase ;
+    rdf:_1 example:Determiner_2 ;
+    rdf:_2 example:Noun_2 ;
+    english:fragment "the park"^^xsd:string .
+
+example:Noun_1 a english:Noun ;
+    english:fragment "dog" .
+
+example:Noun_2 a english:Noun ;
+    english:fragment "park" .
+
+example:Preposition_1 a english:Preposition ;
+    english:fragment "in" .
+
+example:PrepositionalPhrase_1 a english:PrepositionalPhrase ;
+    rdf:_1 example:Preposition_1 ;
+    rdf:_2 example:NounPhrase_2 ;
+    english:fragment "in the park"^^xsd:string .
+
+example:TerminalNode_1 a english:TerminalNode ;
+    english:fragment "big" .
+
+example:VerbPhrase_1 a english:VerbPhrase ;
+    rdf:_1 example:Verb_1 ;
+    rdf:_2 example:PrepositionalPhrase_1 ;
+    english:fragment "runs in the park"^^xsd:string .
+
+example:Verb_1 a english:Verb ;
+    english:fragment "runs" .
+
+decl:english sh:namespace "https://www.english.org/model/def/"^^xsd:anyURI ;
+    sh:prefix "english" .
+
+decl:rdf sh:namespace "http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI ;
+    sh:prefix "rdf" .
+
+decl:rdfs sh:namespace "http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI ;
+    sh:prefix "rdfs" .
+
+decl:xsd sh:namespace "http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI ;
+    sh:prefix "xsd" .
+
+english:Document a owl:Class ;
+    dct:conformsTo <http://example.org/section/Document> ;
+    rdfs:isDefinedBy english: ;
+    rdfs:subClassOf english:NonTerminalNode ;
+    skos:definition "Represents a document in English."@en ;
+    skos:prefLabel "Document"@en .
+
+english:Preposition a owl:Class ;
+    rdfs:isDefinedBy english: ;
+    rdfs:subClassOf english:TerminalNode ;
+    skos:definition "Represents a preposition in English, such as \"in\", \"on\", \"under\"."@en ;
+    skos:prefLabel "Preposition"@en .
+
+english:Sentence a owl:Class ;
+    dct:conformsTo <http://example.org/section/Sentence> ;
+    rdfs:isDefinedBy english: ;
+    rdfs:subClassOf english:NonTerminalNode ;
+    skos:definition "Represents a sentence in English."@en ;
+    skos:prefLabel "Sentence"@en .
+
+english:Verb a owl:Class ;
+    rdfs:isDefinedBy english: ;
+    rdfs:subClassOf english:TerminalNode ;
+    skos:definition "Represents a verb in English, such as \"runs\", \"jumps\", \"is\"."@en ;
+    skos:prefLabel "Verb"@en .
+
+rule:ExpressionConstant a sh:SPARQLRule ;
+    rdfs:comment ""@en ;
+    rdfs:isDefinedBy english: ;
+    skos:prefLabel ""@en ;
+    sh:construct """
+construct {
+
+  # Assert the new English fragment for this English node
+  $this english:fragment ?fragment.
+  
+} where {
+  
+  $this rdf:value ?fragment.
+  
+}""" ;
+    sh:prefixes english: .
+
+rule:ExpressionPhrase a sh:SPARQLRule ;
+    rdfs:comment ""@en ;
+    rdfs:isDefinedBy english: ;
+    skos:prefLabel ""@en ;
+    sh:construct """
+construct {
+
+  # Assert the new English fragment for this English node
+  $this english:fragment ?fragment.
+  
+} where {
+  
+  $this rdf:_1 ?word.
+  ?word english:fragment ?wordFragment.
+  
+  OPTIONAL{
+  $this rdf:_2 ?adjunct.
+  ?adjunct english:fragment ?adjunctFragment.
+  }
+  
+  # Build the English fragment for this phrase, combining word and adjuncts.
+  bind(concat(?wordFragment, if(!bound(?adjunctFragment), '', concat(' ',?adjunctFragment))) as ?fragment)
+  
+}""" ;
+    sh:prefixes english: .
+
+rule:NonTerminalNode a sh:SPARQLRule ;
+    rdfs:comment "Create the English fragment for a non-terminal node in the English sentence structure."@en ;
+    rdfs:isDefinedBy english: ;
+    skos:prefLabel "English non-terminal node serialization algorithm"@en ;
+    sh:construct """
+construct {
+
+  # Assert the new English fragment for this English node
+  $this english:fragment ?fragment.
+  
+} where {
+ 
+  # Get the English fragments of child nodes, if there are any.
+  {
+    select $this (group_concat(str(?fragment);separator=' ') as ?fragments) {
+      {
+        select $this ?member ?fragment {
+          $this ?member ?node.
+          filter(strstarts(str(?member),concat(str(rdf:),'_')))
+          ?node english:fragment ?fragment.
+        }
+        order by xsd:integer(strafter(str(?member),concat(str(rdf:),'_')))
+      }
+    } group by $this
+  }
+  # Build the English fragment for this node, by combining everything retrieved above.
+  bind(strdt(concat(if(?fragments='','',?fragments)),xsd:string) as ?fragment)
+  
+}""" ;
+    sh:prefixes english: .
+
+rule:SyntaxKeyword a sh:SPARQLRule ;
+    rdfs:comment ""@en ;
+    rdfs:isDefinedBy english: ;
+    skos:prefLabel ""@en ;
+    sh:construct """
+construct {
+
+  # Assert the new English fragment for this English node
+  $this english:fragment ?fragment.
+  
+} where {
+  
+  $this a ?class.
+  ?class english:syntax ?syntax.
+  
+  # Build the English fragment for the keyword.
+  bind(strdt(?syntax,xsd:string) as ?fragment)
+  
+}""" ;
+    sh:prefixes english: .
+
+rule:SyntaxSymbol a sh:SPARQLRule ;
+    rdfs:comment ""@en ;
+    rdfs:isDefinedBy english: ;
+    skos:prefLabel ""@en ;
+    sh:construct """
+construct {
+
+  # Assert the new English fragment for this English node
+  $this english:fragment ?fragment.
+  
+} where {
+  
+  $this a ?class.
+  ?class english:syntax ?syntax.
+  
+  # Build the English fragment for the symbol.
+  bind(strdt(?syntax,xsd:string) as ?fragment)
+  
+}""" ;
+    sh:prefixes english: .
+
+target:ExpressionConstant a sh:SPARQLTarget ;
+    rdfs:comment ""@en ;
+    rdfs:isDefinedBy english: ;
+    sh:prefixes english: ;
+    sh:select """
+select $this {
+
+  # Select all character sequence nodes in the English grammar...
+  $this a/rdfs:subClassOf* english:ExpressionConstant.
+  
+  # ...that do not yet have an English fragment.
+  filter not exists { $this english:fragment []. }
+  
+}""" .
+
+target:ExpressionPhrase a sh:SPARQLTarget ;
+    rdfs:comment ""@en ;
+    rdfs:isDefinedBy english: ;
+    sh:prefixes english: ;
+    sh:select """
+select $this {
+
+  # Select all phrase nodes in the English grammar...
+  $this a/rdfs:subClassOf* english:ExpressionPhrase.
+  
+  # ...that do not yet have an English fragment.
+  filter not exists { $this english:fragment []. }
+  
+  # ...but whose child nodes all have an English fragment.
+  minus {
+    $this ?member ?child.
+    filter not exists { ?child english:fragment []. }
+    ?child a/rdfs:subClassOf* english:Node.
+  }
+}""" .
+
+target:NonTerminalNode a sh:SPARQLTarget ;
+    rdfs:comment "Select non-terminal nodes in an English sentence structure that do not have a fragment yet, and whose child nodes all have a fragment."@en ;
+    rdfs:isDefinedBy english: ;
+    sh:prefixes english: ;
+    sh:select """
+select $this {
+
+  # Select all non-terminal nodes in the English syntax...
+  $this a/rdfs:subClassOf* english:NonTerminalNode.
+  
+  # ...that do not yet have an English fragment.
+  filter not exists { $this english:fragment []. }
+  
+  # ...but whose child nodes all have an English fragment (both non-terminal child nodes and terminal child nodes)
+  minus {
+    $this ?member ?child.
+    filter not exists { ?child english:fragment []. }
+    ?child a/rdfs:subClassOf* english:Node.
+  }
+}""" .
+
+target:SyntaxKeyword a sh:SPARQLTarget ;
+    rdfs:comment ""@en ;
+    rdfs:isDefinedBy english: ;
+    sh:prefixes english: ;
+    sh:select """
+select $this {
+
+  # Select all keyword nodes in the English grammar...
+  $this a/rdfs:subClassOf* english:SyntaxKeyword.
+  
+  # ...that do not yet have an English fragment.
+  filter not exists { $this english:fragment []. }
+  
+}""" .
+
+target:SyntaxSymbol a sh:SPARQLTarget ;
+    rdfs:comment ""@en ;
+    rdfs:isDefinedBy english: ;
+    sh:prefixes english: ;
+    sh:select """
+select $this {
+
+  # Select all symbol nodes in the English syntax...
+  $this a/rdfs:subClassOf* english:SyntaxSymbol.
+  
+  # ...that do not yet have an English fragment.
+  filter not exists { $this english:fragment []. }
+  
+}""" .
+
+english:Determiner a owl:Class ;
+    rdfs:isDefinedBy english: ;
+    rdfs:subClassOf english:TerminalNode ;
+    skos:definition "Represents a determiner in English, such as \"the\", \"a\", \"an\"."@en ;
+    skos:prefLabel "Determiner"@en .
+
+english:Node a owl:Class ;
+    dct:conformsTo <http://example.org/section/EnglishNode> ;
+    rdfs:isDefinedBy english: ;
+    skos:definition "Represents an object within the English abstract syntax tree."@en ;
+    skos:prefLabel "Node"@en .
+
+english:Noun a owl:Class ;
+    rdfs:isDefinedBy english: ;
+    rdfs:subClassOf english:TerminalNode ;
+    skos:definition "Represents a noun in English, such as \"dog\", \"book\", \"city\"."@en ;
+    skos:prefLabel "Noun"@en .
+
+english:NonTerminalNode a owl:Class ;
+    dct:conformsTo <http://example.org/section/EnglishStructuralNode> ;
+    rdfs:isDefinedBy english: ;
+    rdfs:subClassOf english:Node ;
+    skos:definition "Represents a structural node in the English abstract syntax tree."@en ;
+    skos:prefLabel "Non-terminal node"@en .
+
+english:TerminalNode a owl:Class ;
+    dct:conformsTo <http://example.org/section/EnglishTerminalNode> ;
+    rdfs:isDefinedBy english: ;
+    rdfs:subClassOf english:Node ;
+    skos:definition "Represents a syntactical node in the English abstract syntax tree, i.e., a word or symbol."@en ;
+    skos:prefLabel "Terminal node"@en .
+
+english: a void:Dataset,
+        owl:Ontology ;
+    dct:abstract " "@en ;
+    dct:created "2024-09-29"^^xsd:date ;
+    dct:creator "Flores Bakker",
+        "Wouter Beek" ;
+    dct:description " "@en ;
+    dct:language "iso639-1:en" ;
+    dct:license "http://creativecommons.org/licenses/by/4.0"^^xsd:anyURI ;
+    dct:publisher <https://rijksfinancien.nl> ;
+    dct:source <https://github.com/floresbakker/englishvoc> ;
+    dct:status status:UnderDevelopment ;
+    dct:subject "English"@en ;
+    dct:title "English Vocabulary"@en ;
+    vann:preferredNamespacePrefix "english" ;
+    vann:preferredNamespaceUri "https://www.english.org/model/def/" ;
+    void:uriRegexPattern "^https://www.english.org/model/def/" ;
+    void:uriSpace "https://www.english.org/model/def/"^^xsd:anyURI ;
+    owl:imports dct:,
+        rdf:,
+        rdfs:,
+        owl:,
+        skos: ;
+    owl:versionInfo "0.1.0" ;
+    skos:example """
+
+# Example sentence "The big dog runs in the park." modeled in RDF:
+
+example:ExampleSentence
+  a english:AbstractSyntaxTree ;
+  rdf:_1 example:NounPhrase_1 ;
+  rdf:_2 example:VerbPhrase_1 .
+
+example:NounPhrase_1
+  a english:NounPhrase ;
+  rdf:_1 example:Determiner_1 ;
+  rdf:_2 example:TerminalNode_1 ;
+  rdf:_3 example:Noun_1 .
+
+example:Determiner_1
+  a english:Determiner ;
+  english:word "The" .
+
+example:TerminalNode_1
+  a english:TerminalNode ;
+  english:word "big" .
+
+example:Noun_1
+  a english:Noun ;
+  english:word "dog" .
+
+example:VerbPhrase_1
+  a english:VerbPhrase ;
+  rdf:_1 example:Verb_1 ;
+  rdf:_2 example:PrepositionalPhrase_1 .
+
+example:Verb_1
+  a english:Verb ;
+  english:word "runs" .
+
+example:PrepositionalPhrase_1
+  a english:PrepositionalPhrase ;
+  rdf:_1 example:Preposition_1 ;
+  rdf:_2 example:NounPhrase_2 .
+
+example:Preposition_1
+  a english:Preposition ;
+  english:word "in" .
+
+example:NounPhrase_2
+  a english:NounPhrase ;
+  rdf:_1 example:Determiner_2 ;
+  rdf:_2 example:Noun_2 .
+
+example:Determiner_2
+  a english:Determiner ;
+  english:word "the" .
+
+example:Noun_2
+  a english:Noun ;
+  english:word "park" .
+
+ 
+"""@en ;
+    sh:declare decl:english,
+        decl:rdf,
+        decl:rdfs,
+        decl:xsd ;
+    foaf:depiction "https://www.rijksfinancien.nl/themes/custom/indicia_theme/files/logo-rijksoverheid.svg"^^xsd:anyURI ;
+    foaf:homepage "https://www.rijksfinancien.nl/"^^xsd:anyURI ;
+    respec:audience " "@en ;
+    respec:background " "@en ;
+    respec:introduction " "@en ;
+    respec:objective " "@en .
+

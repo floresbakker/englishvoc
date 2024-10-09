@@ -42,7 +42,7 @@ This can be modeled in RDF using the English Vocabulary:
 
 ```
 prefix example: <https://example.org/english/>
-prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix english: <https://www.english.org/model/def/>
 
 example:Document
@@ -51,10 +51,10 @@ example:Document
 
 example:ExampleSentence
   a english:Sentence ;
-  rdf:_1 example:the_big_dog ;
+  rdf:_1 example:The_big_dog ;
   rdf:_2 example:runs_in_the_park .
 
-example:the_big_dog
+example:The_big_dog
   a english:NounPhrase ;
   rdf:_1 example:The ;
   rdf:_2 example:big ;

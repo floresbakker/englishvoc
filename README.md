@@ -1,6 +1,6 @@
 # englishvoc
 
-A RDF-based vocabulary to model English into RDF. English documents can thus be represented, queried, generated, validated, analysed, transformed and reused as semantic objects themselves.
+A RDF-based vocabulary to model the English language into RDF. English documents can thus be represented, queried, generated, validated, analysed, transformed and reused as semantic objects themselves.
 
 # Abstract
 
